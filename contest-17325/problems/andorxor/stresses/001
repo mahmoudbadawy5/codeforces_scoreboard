@@ -1,0 +1,1 @@
+{"id":"372db68e14218accb8a6723d2778005e","index":1,"scriptPattern":"genRand 10","inputFile":"stdin","outputFile":"stdout","memoryLimit":256,"timeLimit":3000,"totalTimeLimit":120000,"solutionNames":["sol.cpp","sol_sub1.cpp"],"description":"","solutionNamesUid":""}

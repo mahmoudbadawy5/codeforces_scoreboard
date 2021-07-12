@@ -1,0 +1,1 @@
+Given the output of range sum query problem where n=q constuct any array and queries that produces that output. You can't make l=r

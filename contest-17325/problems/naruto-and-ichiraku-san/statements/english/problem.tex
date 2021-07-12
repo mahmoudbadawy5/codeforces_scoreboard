@@ -1,0 +1,55 @@
+\begin{problem}{Naruto and Ichiraku san}{standard input}{standard output}{5 seconds}{256 megabytes}
+
+One day Naruto came from his last mission hungry and went to \textbf{Ramen Ichiraku}.
+
+Ichikaru was preparing a problem when someone stole the input. The problem was: 
+
+Given an array $a$ of $n$ elements and $n$ queries, Each query will be denoted by $L$ and $R$. Print $\sum\limits_{i=L}^R a_i$ (sum of elements between $L$ and $R$ (inclusive)).
+
+Now he has only the output files and $n$ the number of queries and the number elements in the array. He also remembered that none of the subarrays he asked about were of a single element $(L_i \neq R_i)$.
+
+He asked Naruto to help and he will offer him 100 plates of ramen. Can you help them find an array of $n$ elements and $n$ queries on this array that produces the given output file? If you helped them, Naruto will lend you some of his Cuban energy to qualify to IOI 2020
+
+\InputFile
+The first line will contain $T$  which is the number of test cases you need to solve $1 \le T \le 20$.
+
+Each test case starts with a line containing a single integer $n$ $(3 \le n \le 10^{5})$.
+
+The next line contains $n$ integers representing answers of the $n$ queries where $(-10^{6} \leq ans_i \le 10^{6})$
+
+
+\OutputFile
+For each case, if there is no solution output a single integer $-1$. Otherwise, output $n$.
+
+The next line should contains $n$ integers representing array $a$ where $(-10^{12} \leq a_i \le 10^{12})$
+
+Then $n$ lines each containing $L$ and $R$ which are the range of the query $(1 \le L < R \le n)$
+
+\Scoring
+Sub task \#1 (15 points):
+\begin{itemize}
+\item $500 \leq n \leq 10^5$.
+\item $-100 \le ans_i \le 100$
+\end{itemize}
+
+Sub task \#2 (23 points): 
+\begin{itemize}
+\item $3 \leq n \leq 6$
+\item $0 \le ans_i \le 8$
+\end{itemize}
+
+Sub task \#3 (32 points): ($3 \leq n \leq 10^3$).
+
+Sub task \#4 (30 points): ($3 \leq n \leq 10^5$).
+
+\Example
+
+\begin{example}
+\exmpfile{example.01}{example.01.a}%
+\end{example}
+
+\Note
+\textbf{Warning: Large Input/Output files. Be sure to use fast I/O methods.}
+
+\end{problem}
+

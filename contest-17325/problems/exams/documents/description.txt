@@ -1,0 +1,2 @@
+There are two students A,B and n subjects wit the grade of each subject between 0 and 100
+Stududent A wants to pass all subjects (get 50 or above) and get more than student b grade in at least one subject. For each subject given the number of minutes needed to increas its grade by one and B's grades find the minimum number of minutes for A to satisfy both conditions.

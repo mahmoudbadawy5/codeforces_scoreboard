@@ -1,0 +1,12 @@
+TEST
+<class 'bs4.element.ResultSet'>
+TEST
+<class 'bs4.element.ResultSet'>
+TEST
+<class 'bs4.element.ResultSet'>
+TEST
+<class 'bs4.element.ResultSet'>
+TEST
+<class 'bs4.element.ResultSet'>
+TEST
+<class 'bs4.element.ResultSet'>

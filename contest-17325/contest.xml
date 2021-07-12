@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<contest url="https://polygon.codeforces.com/c/17325">
+        
+    <names>
+                
+        <name language="english" value="IOI Qualifications 2020, Online Round 1"/>
+            
+    </names>
+        
+    <statements>
+                
+        <statement language="english" type="application/pdf" url="https://polygon.codeforces.com/c/17325/english/statements.pdf"/>
+            
+    </statements>
+        
+    <problems>
+                
+        <problem index="a" url="https://polygon.codeforces.com/p03PDzu/mahmoud_badawy/exams"/>
+                
+        <problem index="b" url="https://polygon.codeforces.com/p6o1zfW/mahmoud_badawy/andorxor"/>
+                
+        <problem index="c" url="https://polygon.codeforces.com/p916DOg/siv2050/naruto-and-ichiraku-san"/>
+                
+        <problem index="d" url="https://polygon.codeforces.com/p7HaQPf/mahmoud_badawy/keys-and-lamps-codeforces"/>
+            
+    </problems>
+    
+</contest>
