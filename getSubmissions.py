@@ -25,6 +25,10 @@ def updateSubmissions():
 			subID=submission['id']
 			if subID in proccessedSubmissions:
 				continue
-			print(processSubmissions.processSubmission(contestCount,submission))
+			#if submission['author']['participantType'] != 'CONTESTANT':
+			#	continue
+			if submission['problem']['index'] == 'A' or submission['problem']['index']=='B':
+				continue
+			processSubmissions.processSubmission(contestCount,submission)
 			proccessedSubmissions.add(subID)
 		contestCount = contestCount+1

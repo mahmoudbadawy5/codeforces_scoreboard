@@ -20,12 +20,12 @@ import getSubmissions
 
 getSubmissions.updateSubmissions()
 '''
+print("Hello")
 
+import getSubmissions
+print("World")
 import user
+print("Why??")
 
-user.init()
-user.updateScore('eoi001',1,'A',{'subtask1':13,'subtask2':0,'subtask3':23,'subtask4':0})
-user.updateScore('eoi001',1,'A',{'subtask1':0,'subtask2':27,'subtask3':0,'subtask4':0})
-
-print('')
+getSubmissions.updateSubmissions()
 print(user.getScoreBoard())

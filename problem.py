@@ -35,7 +35,11 @@ def getCasesInfo(contestId,index):
 	caseCount=1
 	for case in cases:
 		if not 'group' in case.attrib:
-			return None,None
+			for x in cases:
+				fulltests[caseCount]=[caseCount]
+				points[caseCount]=100
+				caseCount = caseCount+1
+			return fulltests,points
 		if not (case.attrib['group'] in subtests):
 			subtests[case.attrib['group']]=[]
 		subtests[case.attrib['group']].append(caseCount)

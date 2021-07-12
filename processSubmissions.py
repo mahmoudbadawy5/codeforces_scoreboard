@@ -1,7 +1,7 @@
 import login
 import parseSubmission
 import problem
-#import contestant
+import user
 
 import math
 
@@ -28,4 +28,5 @@ def processSubmission(contestId,submission):
 			if testResults[test]==-1:
 				continue
 			subtaskPoints[subtask]=min(testResults[test],subtaskPoints[subtask])
+	user.updateScore(submission['author']['members'][0]['handle'], contestId, submission['problem']['index'], subtaskPoints)
 	return subtaskPoints

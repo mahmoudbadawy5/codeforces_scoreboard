@@ -32,7 +32,6 @@ def init():
 			problems.append(str(curContestId)+problem['index'])
 		curContestId = curContestId+1
 	inited = True
-	print(problems)
 
 def getActualName(user):
 	user = user.split('=')
@@ -62,6 +61,8 @@ def getTotal(e):
 def getScoreBoard():
 	global users, scores, problems
 	scoreboard = []
+	if len(users.keys()) == 0:
+		return scoreboard
 	for user in users.keys():
 		curEntity = {'name':users[user]}
 		myTotal = 0
