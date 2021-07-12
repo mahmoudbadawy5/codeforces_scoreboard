@@ -1,1 +1,0 @@
-Given an array and three integers a,x,o find the number of subarrays with and=a , xor=x , or = o.
