@@ -3,6 +3,7 @@ import config
 import api
 
 import os.path
+import json
 
 users = {}
 scores = {}
@@ -22,6 +23,8 @@ def init():
 				continue
 			users[data[1].strip()] = data[3].strip()
 			scores[data[1].strip()] = {}
+	if os.path.isfile('logs/userData.txt'):
+		scores=json.load(open('logs/userData.txt')) 
 	curContestId = 1
 	for contest in config.contestIds:
 		data = {"contestId": contest}
@@ -39,6 +42,10 @@ def getActualName(user):
 		return user[1]
 	return user[0]
 
+def save():
+	global scores
+	json.dump(scores, open('logs/userData.txt','w'))
+
 def updateScore(user, contestId, problemId, newScores):
 	global users,scores
 	init()
@@ -54,12 +61,14 @@ def updateScore(user, contestId, problemId, newScores):
 			scores[user][pName][i]=0
 	for i in scores[user][pName].keys():
 		scores[user][pName][i]=max(scores[user][pName][i],newScores[i])
+	save()
 
 def getTotal(e):
 	return e['total']
 
 def getScoreBoard():
 	global users, scores, problems
+	init()
 	scoreboard = []
 	if len(users.keys()) == 0:
 		return scoreboard
