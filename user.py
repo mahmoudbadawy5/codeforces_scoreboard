@@ -7,8 +7,9 @@ import json
 
 users = {}
 scores = {}
-problems = []
-
+problems = set()
+scoreboardCache = []
+changed = True
 inited = False
 
 def init():
@@ -32,7 +33,7 @@ def init():
 		if curProblems == None:
 			continue
 		for problem in curProblems['result']['problems']:
-			problems.append(str(curContestId)+problem['index'])
+			problems.add(str(curContestId)+problem['index'])
 		curContestId = curContestId+1
 	inited = True
 
@@ -47,7 +48,7 @@ def save():
 	json.dump(scores, open('logs/userData.txt','w'))
 
 def updateScore(user, contestId, problemId, newScores):
-	global users,scores
+	global users,scores, changed
 	init()
 	user = getActualName(user)
 	if not user in users:
@@ -61,6 +62,7 @@ def updateScore(user, contestId, problemId, newScores):
 			scores[user][pName][i]=0
 	for i in scores[user][pName].keys():
 		scores[user][pName][i]=max(scores[user][pName][i],newScores[i])
+	changed = True
 	save()
 
 def getTotal(e):
@@ -68,11 +70,23 @@ def getTotal(e):
 
 def getProblems():
 	global problems
-	return problems
+	return sorted(list(problems))
+
+def getColor(score,total):
+	per = 1.0*score/total
+	RB = int(255*(1-per))
+
+	col = RB * 256*256 + 255*256 + RB
+	col = int(col)
+	return "%06x" % col
+
 
 def getScoreBoard():
-	global users, scores, problems
+	global users, scores, problems, changed, scoreboardCache
 	init()
+	if not changed:
+		return scoreboardCache
+	changed = False
 	scoreboard = []
 	if len(scores.keys()) == 0:
 		return scoreboard
@@ -87,8 +101,10 @@ def getScoreBoard():
 				for subtask in scores[user][problem].keys():
 					curTotal = curTotal + scores[user][problem][subtask]
 			curEntity[problem] = curTotal
+			curEntity[problem+'Color'] = getColor(curTotal,100)
 			myTotal = myTotal + curTotal
 		curEntity['total']=myTotal
+		curEntity['totalColor'] = getColor(myTotal,100*len(problems))
 		scoreboard.append(curEntity)
 	scoreboard=sorted(scoreboard,key=getTotal,reverse=True)
 	scoreboard[0]['rank']=1
@@ -97,4 +113,5 @@ def getScoreBoard():
 			scoreboard[i]['rank'] = scoreboard[i-1]['rank']
 		else:
 			scoreboard[i]['rank'] = i+1
+	scoreboardCache = scoreboard
 	return scoreboard

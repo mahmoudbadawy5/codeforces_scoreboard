@@ -43,7 +43,7 @@ def save():
 
 def addToFile(submission):
 	f = open('logs/processedSubmissions.txt','a')
-	f.write(submission+'\n')
+	f.write(str(submission)+'\n')
 
 def updateSubmissions():
 	global locked , processedSubmissions, processedSubmissionsCount, totalSubmissions
@@ -64,13 +64,11 @@ def updateSubmissions():
 		totalSubmissions = totalSubmissions + len(submissions['result'])
 		for submission in submissions['result']:
 			processedSubmissionsCount = processedSubmissionsCount+1
-			print(str(processedSubmissionsCount)+"/"+str(totalSubmissions))
+			#print(str(processedSubmissionsCount)+"/"+str(totalSubmissions))
 			subID=submission['id']
 			if subID in processedSubmissions or not 'verdict' in submission.keys():
 				continue
-			#if submission['author']['participantType'] != 'CONTESTANT':
-			#	continue
-			if submission['problem']['index'] == 'A' or submission['problem']['index']=='B':
+			if submission['author']['participantType'] != 'CONTESTANT':
 				continue
 			processSubmissions.processSubmission(contestCount,submission)
 			processedSubmissions.add(subID)
