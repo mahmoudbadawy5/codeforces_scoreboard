@@ -18,6 +18,7 @@ inited = False
 locked = False
 totalSubmissions = 0
 processedSubmissionsCount = 0
+lastFetched = -1
 
 def init():
 	global inited
@@ -40,9 +41,13 @@ def save():
 	for sub in processedSubmissions:
 		f.write(str(sub)+'\n')
 
+def addToFile(submission):
+	f = open('logs/processedSubmissions.txt','a')
+	f.write(submission+'\n')
 
 def updateSubmissions():
 	global locked , processedSubmissions, processedSubmissionsCount, totalSubmissions
+	global lastFetched
 	if locked:
 		return
 	init()
@@ -53,6 +58,7 @@ def updateSubmissions():
 	for contest in config.contestIds:
 		data = {"contestId": contest}
 		submissions = api.callApi('contest.status',data)
+		curTime = int(time.time())
 		if submissions is None:
 			continue
 		totalSubmissions = totalSubmissions + len(submissions['result'])
@@ -60,7 +66,7 @@ def updateSubmissions():
 			processedSubmissionsCount = processedSubmissionsCount+1
 			print(str(processedSubmissionsCount)+"/"+str(totalSubmissions))
 			subID=submission['id']
-			if subID in processedSubmissions:
+			if subID in processedSubmissions or not 'verdict' in submission.keys():
 				continue
 			#if submission['author']['participantType'] != 'CONTESTANT':
 			#	continue
@@ -68,6 +74,7 @@ def updateSubmissions():
 				continue
 			processSubmissions.processSubmission(contestCount,submission)
 			processedSubmissions.add(subID)
+			addToFile(subID)
 		contestCount = contestCount+1
 	save()
 	locked = False

@@ -24,7 +24,7 @@ def init():
 			users[data[1].strip()] = data[3].strip()
 			scores[data[1].strip()] = {}
 	if os.path.isfile('logs/userData.txt'):
-		scores=json.load(open('logs/userData.txt')) 
+		scores=json.load(open('logs/userData.txt'))
 	curContestId = 1
 	for contest in config.contestIds:
 		data = {"contestId": contest}
@@ -66,13 +66,19 @@ def updateScore(user, contestId, problemId, newScores):
 def getTotal(e):
 	return e['total']
 
+def getProblems():
+	global problems
+	return problems
+
 def getScoreBoard():
 	global users, scores, problems
 	init()
 	scoreboard = []
-	if len(users.keys()) == 0:
+	if len(scores.keys()) == 0:
 		return scoreboard
-	for user in users.keys():
+	for user in scores.keys():
+		if not user in users.keys():
+			users[user]=user
 		curEntity = {'name':users[user]}
 		myTotal = 0
 		for problem in problems:
