@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<title>{{contestName}}</title>
+		<style>
+			table, th, td {
+				border: 1px solid black;
+			}
+			th, td {
+				padding: 15px;
+				text-align: left;
+			}
+			tr:nth-child(even) {background-color: #f2f2f2;}
+		</style>
+	</head>
+	<body>
+		<p> Fetching Submissions: {{percent}}% </p>
+		<div>
+			<table>
+				<tr>
+					<th> Rank </th>
+					<th> Name </th>
+					{% for problem in problems %}
+					<th> {{problem}} </th> 
+					{% endfor %}
+					<th> Total </th>
+				</tr>
+				{% for contestant in ranklist %}
+				<tr>
+					<td> {{contestant['rank']}} </td>
+					<td> {{contestant['name']}} </td>
+					{% for problem in problems %}
+						<td style="background-color:#{{contestant[problem~'Color']}}"> {{contestant[problem]}} </td>
+					{% endfor %}
+					<td style="background-color: #{{contestant['totalColor']}}"> {{contestant['total']}} </td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</body>
+</html>
