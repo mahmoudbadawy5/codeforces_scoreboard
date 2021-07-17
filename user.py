@@ -27,7 +27,7 @@ def init():
 	if os.path.isfile('logs/userData.txt'):
 		scores=json.load(open('logs/userData.txt'))
 	curContestId = 1
-	for contest in config.contestIds:
+	'''for contest in config.contestIds:
 		data = {"contestId": contest}
 		curProblems = api.callApi('contest.standings',data)
 		if curProblems == None:
@@ -35,6 +35,8 @@ def init():
 		for problem in curProblems['result']['problems']:
 			problems.add(str(curContestId)+problem['index'])
 		curContestId = curContestId+1
+	'''
+	problems = ['1A','1B','1C','2A','2B','2C']
 	inited = True
 
 def getActualName(user):
@@ -72,6 +74,18 @@ def getProblems():
 	global problems
 	return sorted(list(problems))
 
+def getUser(user):
+	global users,scores
+	init()
+	if not user in scores.keys():
+		return None
+	if not user in users.keys():
+			users[user]=user
+	ret = scores[user]
+	ret['name'] = users[user]
+	return ret
+
+
 def getColor(score,total):
 	per = 1.0*score/total
 	RB = int(255*(1-per))
@@ -105,6 +119,7 @@ def getScoreBoard():
 			myTotal = myTotal + curTotal
 		curEntity['total']=myTotal
 		curEntity['totalColor'] = getColor(myTotal,100*len(problems))
+		curEntity['user'] = user
 		scoreboard.append(curEntity)
 	scoreboard=sorted(scoreboard,key=getTotal,reverse=True)
 	scoreboard[0]['rank']=1
