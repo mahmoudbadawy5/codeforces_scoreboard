@@ -27,7 +27,7 @@ def init():
 	if os.path.isfile('logs/userData.txt'):
 		scores=json.load(open('logs/userData.txt'))
 	curContestId = 1
-	'''for contest in config.contestIds:
+	for contest in config.contestIds:
 		data = {"contestId": contest}
 		curProblems = api.callApi('contest.standings',data)
 		if curProblems == None:
@@ -35,8 +35,6 @@ def init():
 		for problem in curProblems['result']['problems']:
 			problems.add(str(curContestId)+problem['index'])
 		curContestId = curContestId+1
-	'''
-	problems = ['1A','1B','1C','2A','2B','2C']
 	inited = True
 
 def getActualName(user):

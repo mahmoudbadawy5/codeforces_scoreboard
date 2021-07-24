@@ -29,7 +29,11 @@ def getRequest(method,data):
 
 def callApi(method,data):
 	req = getRequest(method,data)
-	response = urllib.request.urlopen(req).read()
+	try:
+		response = urllib.request.urlopen(req).read()
+	except:
+		print('Failed to connect to codeforces API')
+		return None
 	result = json.loads(response)
 	if result['status'] != u'OK':
 		return None
